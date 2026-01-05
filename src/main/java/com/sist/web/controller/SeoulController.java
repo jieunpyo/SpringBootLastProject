@@ -22,9 +22,10 @@ import lombok.RequiredArgsConstructor;
 public class SeoulController {
   private final SeoulService sService;
   
-  @GetMapping("/seoul/location")
+  @GetMapping("/seoul/list")
   public String seoul_location(
 	@RequestParam(name="page",required = false) String page,
+	@RequestParam("cno") int cno,
 	Model model
   )
   {
@@ -32,8 +33,11 @@ public class SeoulController {
 	  if(page==null)
 		  page="1";
 	  int curpage=Integer.parseInt(page);
-	  List<SeoulVO> list=sService.seoulLocationListData((curpage-1)*12);
-	  int totalpage=sService.seoulLocationTotalPage();
+	  Map map=new HashMap();
+	  map.put("start", (curpage-1)*12);
+	  map.put("contenttype", cno);
+	  List<SeoulVO> list=sService.seoulListData(map);
+	  int totalpage=sService.seoulTotalPage(cno);
 	  final int BLOCK=10;
 	  int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 	  int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
@@ -41,25 +45,23 @@ public class SeoulController {
 	  if(endPage>totalpage)
 		  endPage=totalpage;
 	  
-	  for(SeoulVO vo:list)
-	  {
-		  String[] addrs=vo.getAddress().split(" ");
-		  vo.setAddress(addrs[0]+" "+addrs[1]);
-		  String s=vo.getLvo().getUsetime();
-		  int i=s.indexOf("(");
-		  if(i>=0)
-		  {
-			  vo.getLvo().setUsetime(s.substring(0,i).trim());
-		  }
-	  }
+	  String name="";
+	  if(cno==12) name="서울 관광지";
+	  else if(cno==14) name="서울 문화시설";
+	  else if(cno==15) name="서울 축제 & 공연";
+	  else if(cno==32) name="서울 숙박";
+	  else if(cno==38) name="서울 쇼핑";
+	  else if(cno==39) name="서울 음식";
 	  
+	  model.addAttribute("name", name);
 	  model.addAttribute("list", list);
 	  model.addAttribute("curpage", curpage);
 	  model.addAttribute("totalpage", totalpage);
 	  model.addAttribute("startPage", startPage);
 	  model.addAttribute("endPage", endPage);
+	  model.addAttribute("cno", cno);
 	  
-	  model.addAttribute("main_jsp", "../seoul/location.jsp");
+	  model.addAttribute("main_jsp", "../seoul/list.jsp");
 	  return "main/main";
   }
   
