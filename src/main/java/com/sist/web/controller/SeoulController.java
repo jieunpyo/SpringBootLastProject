@@ -106,7 +106,8 @@ public class SeoulController {
 	  String jsp="";
 	  if(contenttype==12)
 	  {
-		  
+		  SeoulVO vo=sService.seoulAttractionDetailData(contentid);
+		  model.addAttribute("vo", vo);
 		  jsp="../seoul/attraction.jsp";
 	  }
 	  else if(contenttype==14)
