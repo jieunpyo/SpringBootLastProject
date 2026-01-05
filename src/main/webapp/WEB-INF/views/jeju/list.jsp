@@ -51,7 +51,7 @@
                     <div class="single-post wow fadeInUp" data-wow-delay="0.1s">
                         <!-- Post Thumb -->
                         <div class="post-thumb">
-                          <a href="/seoul/detail_before?contentid=${vo.contentid }&contenttype=${vo.contenttype}">
+                          <a href="/jeju/detail_before?contentid=${vo.contentid }">
                             <img src="${vo.image1 }" style="width: 350px;height: 240px;">
                           </a>
                         </div>
@@ -84,7 +84,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/seoul/detail_before?contentid=${vo.contentid }&contenttype=${vo.contenttype}">
+                            <a href="/jeju/detail_before?contentid=${vo.contentid }">
                                 <h4 class="post-headline">${vo.title }</h4>
                             </a>
                         </div>
@@ -101,17 +101,17 @@
                             <ul class="pagination">
                                <c:if test="${startPage>1 }">
                             	<li class="page-item">
-                                    <a class="page-link" href="/seoul/list?page=${startPage-1 }&cno=${cno}">이전 <i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                                    <a class="page-link" href="/jeju/list?page=${startPage-1 }&cno=${cno}">이전 <i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
                                 </li>
                                </c:if>
                                <c:forEach var="i" begin="${startPage }" end="${endPage }">
                                 <li class="page-item ${i==curpage?'active':''}">
-                                    <a class="page-link" href="/seoul/list?page=${i }&cno=${cno}">${i}</a>
+                                    <a class="page-link" href="/jeju/list?page=${i }&cno=${cno}">${i}</a>
                                 </li>
                                </c:forEach>
                                <c:if test="${endPage<totalpage }">
                                 <li class="page-item">
-                                    <a class="page-link" href="/seoul/list?page=${endPage+1 }&cno=${cno}">다음 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    <a class="page-link" href="/jeju/list?page=${endPage+1 }&cno=${cno}">다음 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                 </li>
                                </c:if>
                             </ul>
