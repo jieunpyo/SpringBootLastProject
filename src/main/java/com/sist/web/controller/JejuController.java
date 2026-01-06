@@ -9,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sist.web.service.JejuService;
-import com.sist.web.vo.JejuVO;
+import com.sist.web.service.*;
+import com.sist.web.vo.*;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,12 +18,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JejuController {
   private final JejuService jService;
-  
+
   @GetMapping("/jeju/list")
-  public String jeju_location(
-	@RequestParam(name="page",required = false) String page,
-	@RequestParam("cno") int cno,
-	Model model
+  public String busan_location(
+    @RequestParam(name="page",required = false) String page,
+    @RequestParam("cno") int cno, 
+    Model model
   )
   {
 	  // include가 되는 파일을 올린다 => request를 공유할 수 있다 
@@ -32,7 +32,7 @@ public class JejuController {
 	  int curpage=Integer.parseInt(page);
 	  Map map=new HashMap();
 	  map.put("start", (curpage-1)*12);
-	  map.put("contenttype", cno);
+	  map.put("contenttype",cno);
 	  List<JejuVO> list=jService.jejuListData(map);
 	  for(JejuVO vo:list)
 	  {
@@ -46,6 +46,7 @@ public class JejuController {
 	  
 	  if(endPage>totalpage)
 		  endPage=totalpage;
+	  
 	  
 	  String name="";
 	  if(cno==12) name="제주 관광지";
@@ -64,6 +65,12 @@ public class JejuController {
 	  model.addAttribute("cno", cno);
 	  
 	  model.addAttribute("main_jsp", "../jeju/list.jsp");
+	  return "main/main";
+  }
+  @GetMapping("/jeju/find")
+  public String jeju_find(Model model)
+  {
+	  model.addAttribute("main_jsp", "../jeju/jeju_find.jsp");
 	  return "main/main";
   }
   

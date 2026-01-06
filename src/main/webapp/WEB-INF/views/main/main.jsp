@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,6 +23,10 @@
     <!-- Responsive CSS -->
     <link href="/css/responsive/responsive.css" rel="stylesheet">
 
+    <script src="https://unpkg.com/vue@3.3.4/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-demi"></script>
+    <script src="https://unpkg.com/pinia@2.1.7/dist/pinia.iife.prod.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -39,9 +44,9 @@
     </div>
 
     <jsp:include page="header.jsp"></jsp:include>
-	<jsp:include page="${main_jsp }"></jsp:include>
- 	<jsp:include page="footer.jsp"></jsp:include>
- 	
+    <jsp:include page="${main_jsp }"></jsp:include>
+    <jsp:include page="footer.jsp"></jsp:include>
+    
     <!-- Jquery-2.2.4 js -->
     <script src="/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->

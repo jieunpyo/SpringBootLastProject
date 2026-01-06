@@ -14,24 +14,22 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 /*
- * 	 MVC : 오라클 / 컨트롤러 / JSP 
- * 		   --------------- Vue / React 
- * 
- * 		   => SQL / 사용자가 어떤 데이터를 보낼지
- * 
+ *   MVC : 오라클 / 컨트롤러 / JSP 
+ *         --------------- Vue / React 
+ *         
+ *         => SQL / 사용자가 어떤 데이터를 보낼지
+ *         
  */
 @Controller
 @RequiredArgsConstructor
 public class SeoulController {
-
-    private final JejuController jejuController;
   private final SeoulService sService;
 
   @GetMapping("/seoul/list")
   public String seoul_location(
-	@RequestParam(name="page",required = false) String page,
-	@RequestParam("cno") int cno,
-	Model model
+    @RequestParam(name="page",required = false) String page,
+    @RequestParam("cno") int cno, 
+    Model model
   )
   {
 	  // include가 되는 파일을 올린다 => request를 공유할 수 있다 
@@ -40,7 +38,7 @@ public class SeoulController {
 	  int curpage=Integer.parseInt(page);
 	  Map map=new HashMap();
 	  map.put("start", (curpage-1)*12);
-	  map.put("contenttype", cno);
+	  map.put("contenttype",cno);
 	  List<SeoulVO> list=sService.seoulListData(map);
 	  for(SeoulVO vo:list)
 	  {
@@ -54,6 +52,7 @@ public class SeoulController {
 	  
 	  if(endPage>totalpage)
 		  endPage=totalpage;
+	  
 	  
 	  String name="";
 	  if(cno==12) name="서울 관광지";
@@ -80,10 +79,10 @@ public class SeoulController {
    */
   @GetMapping("/seoul/detail_before")
   public String seoul_detail_before(
-	@RequestParam("contentid") int contentid,
-	@RequestParam("contenttype") int contenttype,
-	HttpServletResponse response,
-	RedirectAttributes ra
+    @RequestParam("contentid") int contentid,
+    @RequestParam("contenttype") int contenttype,
+    HttpServletResponse response,
+    RedirectAttributes ra
   )
   {
 	  Cookie cookie=new Cookie("seoul_"+contentid, String.valueOf(contentid));
@@ -122,7 +121,6 @@ public class SeoulController {
 	  {
 		  jsp="../seoul/stey.jsp";
 	  }
-	  
 	  else if(contenttype==38)
 	  {
 		  jsp="../seoul/shopping.jsp";
@@ -132,6 +130,13 @@ public class SeoulController {
 		  jsp="../seoul/food_store.jsp";
 	  }
 	  model.addAttribute("main_jsp", jsp);
+	  return "main/main";
+  }
+  // 화면 이동 => 데이터처리 (RestController)
+  @GetMapping("/seoul/find")
+  public String seoul_find(Model model)
+  {
+	  model.addAttribute("main_jsp", "../seoul/seoul_find.jsp");
 	  return "main/main";
   }
   

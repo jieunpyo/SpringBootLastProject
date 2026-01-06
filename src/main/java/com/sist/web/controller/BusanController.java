@@ -1,3 +1,4 @@
+
 package com.sist.web.controller;
 
 import java.util.HashMap;
@@ -19,12 +20,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BusanController {
   private final BusanService bService;
-  
+
   @GetMapping("/busan/list")
   public String busan_location(
-	@RequestParam(name="page",required = false) String page,
-	@RequestParam("cno") int cno,
-	Model model
+    @RequestParam(name="page",required = false) String page,
+    @RequestParam("cno") int cno, 
+    Model model
   )
   {
 	  // include가 되는 파일을 올린다 => request를 공유할 수 있다 
@@ -33,7 +34,7 @@ public class BusanController {
 	  int curpage=Integer.parseInt(page);
 	  Map map=new HashMap();
 	  map.put("start", (curpage-1)*12);
-	  map.put("contenttype", cno);
+	  map.put("contenttype",cno);
 	  List<BusanVO> list=bService.busanListData(map);
 	  for(BusanVO vo:list)
 	  {
@@ -47,6 +48,7 @@ public class BusanController {
 	  
 	  if(endPage>totalpage)
 		  endPage=totalpage;
+	  
 	  
 	  String name="";
 	  if(cno==12) name="부산 관광지";
@@ -68,4 +70,10 @@ public class BusanController {
 	  return "main/main";
   }
   
+  @GetMapping("/busan/find")
+  public String busan_find(Model model)
+  {
+	  model.addAttribute("main_jsp", "../busan/busan_find.jsp");
+	  return "main/main";
+  }
 }

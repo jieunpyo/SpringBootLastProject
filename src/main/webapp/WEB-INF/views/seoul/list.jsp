@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-    <div class="breadcumb-area" style="background-image: url(/img/bg-/img/breadcumb.jpg);">
+  <div class="breadcumb-area" style="background-image: url(/img/bg-img/breadcumb.jpg);">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
@@ -51,9 +51,9 @@
                     <div class="single-post wow fadeInUp" data-wow-delay="0.1s">
                         <!-- Post Thumb -->
                         <div class="post-thumb">
-                          <a href="/seoul/detail_before?contentid=${vo.contentid }&contenttype=${vo.contenttype}">
-                            <img src="${vo.image1 }" style="width: 350px;height: 240px;">
-                          </a>
+                           <a href="/seoul/detail_before?contentid=${vo.contentid }&contenttype=${vo.contenttype}">
+                            <img src="${vo.image1 }" style="width: 350px;height: 240px">
+                           </a>
                         </div>
                         <!-- Post Content -->
                         <div class="post-content">
@@ -90,9 +90,7 @@
                         </div>
                     </div>
                 </div>
-				</c:forEach>
-                
-
+                </c:forEach>
                 
 
                 <div class="col-12">
@@ -100,15 +98,17 @@
                         <nav aria-label="#">
                             <ul class="pagination">
                                <c:if test="${startPage>1 }">
-                            	<li class="page-item">
+                                <li class="page-item">
                                     <a class="page-link" href="/seoul/list?page=${startPage-1 }&cno=${cno}">이전 <i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
                                 </li>
                                </c:if>
+                               
                                <c:forEach var="i" begin="${startPage }" end="${endPage }">
                                 <li class="page-item ${i==curpage?'active':''}">
                                     <a class="page-link" href="/seoul/list?page=${i }&cno=${cno}">${i}</a>
                                 </li>
-                               </c:forEach>
+                               </c:forEach> 
+                                
                                <c:if test="${endPage<totalpage }">
                                 <li class="page-item">
                                     <a class="page-link" href="/seoul/list?page=${endPage+1 }&cno=${cno}">다음 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
@@ -125,6 +125,6 @@
             </div>
         </div>
     </section>
-    <!-- ****** Archive Area End ****** -->
+  
 </body>
 </html>
