@@ -44,11 +44,11 @@ jobs:
       run: |
         ssh-keygen -t rsa 13.209.75.1 >> ~/.ssh/known_hosts
     - name: Deploy to Server with rsync
-    run: |
-      rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/libs/*.war ubuntu@13.209.75.1:~/app
+      run: |
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/libs/*.war ubuntu@13.209.75.1:~/app
 
-    -name: Run SSH commands
-     run: |
-       ssh -i ~/.ssh/id_rsa ubuntu@13.209.75.1 << 'EOF'
+    - name: Run SSH commands
+      run: |
+        ssh -i ~/.ssh/id_rsa ubuntu@13.209.75.1 << 'EOF'
          pkill -f 'java -jar'|| true
          nohup java-jar ~/app/SpringBootLastProject-0.0.1-SNAPSHOT.war> log.txt> &1 &EDF
