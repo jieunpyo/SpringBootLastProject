@@ -31,14 +31,20 @@
                                 <a href="/member/join">회원가입</a>
                             </div>
                             </sec:authorize>
+                            <sec:authorize access="isAuthenticated()">
+                             <div class="login">
+                                <span><sec:authentication property="name"/>
+                                	  님 로그인되었습니다!!&nbsp;</span>
+                             </div>
+                            </sec:authorize>
                             <sec:authorize access="!isAuthenticated()">
                              <div class="register">
-                                <a href="#">로그인</a>
+                                <a href="/member/login">로그인</a>
                              </div>
                             </sec:authorize>
                             <sec:authorize access="isAuthenticated()">
                              <div class="register">
-                                <a href="#">로그아웃</a>
+                                <a href="/member/logout">로그아웃</a>
                              </div>
                             </sec:authorize>
                             

@@ -10,12 +10,12 @@ import com.sist.web.vo.*;
 @Mapper
 @Repository
 public interface MemberMapper {
-  // ID 중복 체크 
+  // ID 중복 체크
   @Select("SELECT COUNT(*) FROM project_member_1 "
 		 +"WHERE userid=#{userid}")
   public int memberIdCheck(String userid);
   /*
-   * 	USERID   NOT NULL VARCHAR2(20)  
+   *    USERID   NOT NULL VARCHAR2(20)  
 		USERNAME NOT NULL VARCHAR2(50)  
 		USERPWD  NOT NULL VARCHAR2(300) 
 		ENABLED           NUMBER(1)     
@@ -27,7 +27,7 @@ public interface MemberMapper {
 		ADDR2             VARCHAR2(300) 
 		PHONE             VARCHAR2(20)  
 		CONTENT           CLOB          
-		REGDATE           DATE 
+		REGDATE           DATE  
    */
   @Insert("INSERT INTO project_member_1(userid,username,userpwd,"
 		 +"sex,birthday,email,post,addr1,addr2,phone,content) "
@@ -36,9 +36,12 @@ public interface MemberMapper {
 		 +"#{addr2},#{phone},#{content})")
   public void memberInsert(MemberVO vo);
   
-  @Insert("INSERT INTO authority VALUES("
-  		 +"#{userid},'ROLE_USER')")
+  @Insert("INSERT INTO authority_1 VALUES("
+         +"#{userid},'ROLE_USER')")
   public void memberAuthorityInsert(String userid);
   
   // 비밀번호 검사 => 데이터 읽기 => session 저장 
+  @Select("SELECT * FROM project_member_1 "
+		 +"WHERE userid=#{userid}")
+  public MemberVO memberInfodData(String userid);
 }

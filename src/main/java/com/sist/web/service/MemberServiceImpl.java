@@ -20,14 +20,26 @@ public class MemberServiceImpl implements MemberService{
 
    @Override
    @Transactional(rollbackFor = Exception.class)
-   // 일괄처리 => 성공 / 실패 
-   //				  rollback 
-   //			commit
+   // 일괄처리 => 성공 / 실패
+   //                 rollback 
+   //           commit
    public void memberInsert(MemberVO vo) {
 	// TODO Auto-generated method stub
 	 mapper.memberInsert(vo);
-	 mapper.memberAuthorityInsert(vo.getUserid());
+	 
    }
-   
+
+   @Override
+   public void memberAuthorityInsert(String userid) {
+	// TODO Auto-generated method stub
+	 mapper.memberAuthorityInsert(userid);
+   }
+
+   @Override
+   public MemberVO memberInfodData(String userid) {
+	// TODO Auto-generated method stub
+	return mapper.memberInfodData(userid);
+   }
+
    
 }
