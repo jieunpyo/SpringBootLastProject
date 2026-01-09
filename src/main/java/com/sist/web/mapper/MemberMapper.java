@@ -44,4 +44,6 @@ public interface MemberMapper {
   @Select("SELECT * FROM project_member_1 "
 		 +"WHERE userid=#{userid}")
   public MemberVO memberInfodData(String userid);
+  
+  
 }

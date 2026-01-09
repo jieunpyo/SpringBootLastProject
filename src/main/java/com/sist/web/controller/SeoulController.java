@@ -115,6 +115,8 @@ public class SeoulController {
 	  }
 	  else if(contenttype==15)
 	  {
+		  SeoulVO vo=sService.seoulFestvalDetailData(contentid);
+		  model.addAttribute("vo", vo);
 		  jsp="../seoul/fastval.jsp";
 	  }
 	  else if(contenttype==32)

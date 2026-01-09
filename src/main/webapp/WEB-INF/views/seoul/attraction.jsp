@@ -51,20 +51,12 @@
                   <td width="55%">${vo.address }</td>
                  </tr>
                  <tr>
-                  <td width="15%" class="text-center">안내</td>
-                  <td width="55%">${vo.avo.infocenter }</td>
-                 </tr>
-                 <tr>
                   <td width="15%" class="text-center">사용시간</td>
                   <td width="55%">${vo.avo.usetime }</td>
                  </tr>
                  <tr>
                   <td width="15%" class="text-center">휴무일</td>
                   <td width="55%">${vo.avo.restdate }</td>
-                 </tr>
-                 <tr>
-                  <td width="15%" class="text-center">주차</td>
-                  <td width="55%">${vo.avo.parking }</td>
                  </tr>
                </tbody>
               </table>
