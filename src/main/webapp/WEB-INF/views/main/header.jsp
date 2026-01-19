@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
@@ -138,10 +139,10 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">커뮤니티</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="index.html">자유게시판</a>
+                                        <a class="dropdown-item" href="/board/list">자유게시판</a>
                                         <a class="dropdown-item" href="archive.html">공지사항</a>
                                         <sec:authorize access="isAuthenticated()">
-                                          <a class="dropdown-item" href="single.html">일대일채팅</a>
+                                          <a class="dropdown-item" href="/chatbot/chatbot">챗봇</a>
                                           <a class="dropdown-item" href="single.html">그룹채팅</a>
                                         </sec:authorize>
                                     </div>
@@ -150,13 +151,13 @@
                                 <sec:authorize access="isAuthenticated()">
                                    <sec:authorize access="hasRole('USER')">
 	                                <li class="nav-item">
-	                                    <a class="nav-link" href="#">마이페이지</a>
+	                                    <a class="nav-link" href="/mypage/mypage_main">마이페이지</a>
 	                                </li>
 	                               </sec:authorize>
 	                               
 	                               <sec:authorize access="hasRole('ADMIN')">
 	                                <li class="nav-item">
-	                                    <a class="nav-link" href="#">관리자페이지</a>
+	                                    <a class="nav-link" href="/admin/admin_main">관리자페이지</a>
 	                                </li>
 	                               </sec:authorize>
                                 </sec:authorize>

@@ -1,4 +1,3 @@
-
 package com.sist.web.vo;
 
 import lombok.Data;
@@ -22,6 +21,6 @@ public class SeoulVO {
   private double x,y;
   private AttractionVO avo=new AttractionVO();
   private FoodStoreVO fsvo=new FoodStoreVO();
-  private FestivalVO fvo=new FestivalVO();
+  private FestivalVO  fvo=new FestivalVO();
   private StayVO svo=new StayVO();
 }

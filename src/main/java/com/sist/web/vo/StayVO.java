@@ -14,12 +14,13 @@ FOODPLACE         VARCHAR2(1024)
 RESERVATIONURL    VARCHAR2(1024) 
 INFOCENTER        VARCHAR2(1024) 
 PARKING           VARCHAR2(1024) 
-MSG               CLOB  
+MSG               CLOB           
+
  */
 @Data
 public class StayVO {
   private int no,contentid;
   private String roomtype,checkintime,checkouttime,chkcooking,
-  		  subfacility,foodplace,reservationurl,
-  		  infocenter,parking,msg;
+          subfacility,foodplace,reservationurl,
+          infocenter,parking,msg;
 }

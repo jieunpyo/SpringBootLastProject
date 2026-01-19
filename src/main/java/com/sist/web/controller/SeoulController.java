@@ -101,11 +101,14 @@ public class SeoulController {
 	@RequestParam("contenttype") int contenttype,
 	Model model
   )
-  {
+  { 
+	  
 	  String jsp="";
 	  if(contenttype==12)
 	  {
 		  SeoulVO vo=sService.seoulAttractionDetailData(contentid);
+		  String[] addrs=vo.getAddress().split(" ");
+		  model.addAttribute("addr", addrs[1].trim());
 		  model.addAttribute("vo", vo);
 		  jsp="../seoul/attraction.jsp";
 	  }
@@ -116,6 +119,8 @@ public class SeoulController {
 	  else if(contenttype==15)
 	  {
 		  SeoulVO vo=sService.seoulFestvalDetailData(contentid);
+		  String[] addrs=vo.getAddress().split(" ");
+		  model.addAttribute("addr", addrs[1].trim());
 		  model.addAttribute("vo", vo);
 		  jsp="../seoul/fastval.jsp";
 	  }
@@ -129,6 +134,10 @@ public class SeoulController {
 	  }
 	  else if(contenttype==39)
 	  {
+		  SeoulVO vo=sService.seoulFoodStoreDetailData(contentid);
+		  String[] addrs=vo.getAddress().split(" ");
+		  model.addAttribute("addr", addrs[1].trim());
+		  model.addAttribute("vo", vo);
 		  jsp="../seoul/food_store.jsp";
 	  }
 	  model.addAttribute("main_jsp", jsp);

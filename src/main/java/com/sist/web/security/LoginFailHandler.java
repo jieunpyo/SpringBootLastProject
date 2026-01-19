@@ -20,13 +20,12 @@ import com.sist.web.vo.*;
 @Component
 //@RequiredArgsConstructor
 public class LoginFailHandler implements AuthenticationFailureHandler{
-	//private final MemberService mService;
-	//private final BCryptPasswordEncoder encoder;
+    //private final MemberService mService;
+    //private final BCryptPasswordEncoder encoder;
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		System.out.println("Call");
 		String errorMsg="";
 		try
 		{
@@ -41,13 +40,13 @@ public class LoginFailHandler implements AuthenticationFailureHandler{
 			else
 			{
 				MemberVO vo=mService.memberInfodData(id);
-				if(encoder.matches(pwd, vo.getUserpwd()))
+				if(encoder.matches(pwd,vo.getUserpwd()))
 				{
 					errorMsg="로그인되었습니다!!";
 				}
 				else
 				{
-					errorMsg="비밀번호가 틀립니다!!";
+					errorMsg="비밀번호가 틀입니다!!";
 				}
 			}*/
 			

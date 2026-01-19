@@ -1,4 +1,3 @@
-
 package com.sist.web.vo;
 /*
  *   USERID   NOT NULL VARCHAR2(20)  

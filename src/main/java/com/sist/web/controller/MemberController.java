@@ -32,6 +32,7 @@ public class MemberController {
      @ModelAttribute("vo") MemberVO vo
    )
    {
+	   
 	   System.out.println(vo);
 	   vo.setPhone(vo.getPhone1()+"-"+vo.getPhone2());
 	   vo.setUserpwd(encoder.encode(vo.getUserpwd()));

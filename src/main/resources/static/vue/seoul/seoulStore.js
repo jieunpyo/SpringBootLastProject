@@ -1,4 +1,3 @@
-
 const {defineStore} = Pinia
 // store => 저장 공간 (출력에 필요한 데이터를 모아서 관리)
 // static 변수 => 멤버

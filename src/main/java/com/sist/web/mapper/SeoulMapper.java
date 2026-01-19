@@ -80,11 +80,13 @@ public interface SeoulMapper {
 	public List<SeoulVO> seoulTop5Data();
 	
 	/*
-	 * 	 private int no,contentid;
-  		 private String eventstartdate,eventenddate,agelimit,
-  		 playtime,eventplace,eventhomepage,usetime,spendtime,msg;
-  		 
-  		 image1,x,y,title,address
+	 *   <!-- 
+      private int no,contentid;
+      private String eventstartdate,eventenddate,agelimit,
+      playtime,eventplace,eventhomepage,usetime,spendtime,msg;
+      
+      image1,x,y,title,address
+   -->
 	 */
 	@Results({
 		@Result(property = "fvo.eventstartdate",column = "eventstartdate"),
@@ -98,10 +100,33 @@ public interface SeoulMapper {
 		@Result(property = "fvo.msg",column = "msg")
 	})
 	@Select("SELECT f.no,image1,x,y,title,address,"
-		   +"eventstartdate,eventenddate,agelimit,"
-		   +"playtime,eventplace,eventhomepage,usetime,spendtime,msg "
-		   +"FROM seoultravel s, festival f "
-		   +"WHERE s.contentid=f.contentid "
-		   +"AND s.contentid=#{contntid}")
+		  +"eventstartdate,eventenddate,agelimit,"
+		  +"playtime,eventplace,eventhomepage,usetime,spendtime,msg "
+		  +"FROM seoultravel s, festival f "
+		  +"WHERE s.contentid=f.contentid "
+		  +"AND s.contentid=#{contentid}")
 	public SeoulVO seoulFestvalDetailData(int contentid);
+	
+	/*
+	 *  private int no,contentid;
+        private String firstmenu,treatmenu,infocenter,parking,
+        onpendate,opentime,restdate,msg;
+	 */
+	@Results({
+		@Result(property = "fsvo.firstmenu",column = "firstmenu"),
+		@Result(property = "fsvo.treatmenu",column = "treatmenu"),
+		@Result(property = "fsvo.infocenter",column = "infocenter"),
+		@Result(property = "fsvo.parking",column = "parking"),
+		@Result(property = "fsvo.opendate",column = "opendate"),
+		@Result(property = "fsvo.opentime",column = "opentime"),
+		@Result(property = "fsvo.restdate",column = "restdate"),
+		@Result(property = "fsvo.msg",column = "msg")
+	})
+	@Select("SELECT f.no,image1,x,y,title,address,f.contentid,"
+		  +"firstmenu,treatmenu,infocenter,"
+		  +"parking,opendate,opentime,restdate,msg "
+		  +"FROM seoultravel s, foodstore f "
+		  +"WHERE s.contentid=f.contentid "
+		  +"AND s.contentid=#{contentid}")
+	public SeoulVO seoulFoodStoreDetailData(int contentid);
 }
