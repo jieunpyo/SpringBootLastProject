@@ -12,7 +12,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="bradcumb-title text-center">
-                        <h2>마이 페이지</h2>
+                        <h2>마이페이지</h2>
                     </div>
                 </div>
             </div>
@@ -31,18 +31,15 @@
             </div>
         </div>
     </div>
-    <!-- ****** Breadcumb Area End ****** -->
-
-    <!-- ****** Archive Area Start ****** -->
     <section class="archive-area section_padding_80">
       <div class="container">
        <div class="col-sm-3">
         <jsp:include page="../mypage/mypage_menu.jsp"></jsp:include>
        </div>
        <div class="col-sm-9">
-         <jsp:include page="${mypage_jsp }"></jsp:include>
+        <jsp:include page="${mypage_jsp }"></jsp:include>
        </div>
       </div>
-     </section>
+    </section>
 </body>
 </html>

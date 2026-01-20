@@ -27,6 +27,7 @@
     <script src="https://unpkg.com/vue-demi"></script>
     <script src="https://unpkg.com/pinia@2.1.7/dist/pinia.iife.prod.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72fa81817487692b6dc093004af97650&libraries=services"></script>
 </head>
 
 <body>

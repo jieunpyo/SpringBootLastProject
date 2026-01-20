@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%-- JWT는 사용할 수 없다 --%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+    pageEncoding="UTF-8"%>   
+<%-- JWT 는 사용할 수 없다 --%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,7 @@ const CNO='${param.contentid}'
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="bradcumb-title text-center">
-                        <h2>${vo.title }</h2>
+                        <h2>음식점</h2>
                     </div>
                 </div>
             </div>
@@ -44,11 +44,7 @@ const CNO='${param.contentid}'
         </div>
     </div>
     <!-- ****** Breadcumb Area End ****** -->
-     <!-- 
-        private int no,contentid;
-        private String firstmenu,treatmenu,infocenter,parking,
-        onpendate,opentime,restdate,msg;
-      -->
+
     <!-- ****** Archive Area Start ****** -->
     <section class="archive-area section_padding_80">
         <div class="container">
@@ -86,7 +82,7 @@ const CNO='${param.contentid}'
                   <td width="55%">${vo.fsvo.firstmenu }</td>
                  </tr>
                  <tr>
-                  <td width="15%" class="text-center">부메뉴</td>
+                  <td width="15%" class="text-center">부메누</td>
                   <td width="55%">${vo.fsvo.treatmenu }</td>
                  </tr>
                </tbody>
@@ -98,8 +94,8 @@ const CNO='${param.contentid}'
                   </tr>
                   <tr>
                     <td class="text-right">
-                     <sec:authorize access="hasRole('USER')">
-                      <a href="/reserve/reserve_main" class="btn btn-sm btn-danger">예약</a>
+                    <sec:authorize access="hasRole('USER')">
+                        <a href="/reserve/reserve_main" class="btn btn-sm btn-danger">예약</a>
                      </sec:authorize>
                      <a href="javascript:history.back()" class="btn btn-sm btn-danger">목록</a>
                     </td>
@@ -111,24 +107,26 @@ const CNO='${param.contentid}'
                  <tr>
                   <td class="text-center">
                    <div class="map_wrap">
-					    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-					
-					    <div id="menu_wrap" class="bg_white">
-					        <div class="option">
-					            <div>
-					                <form onsubmit="searchPlaces(); return false;">
-					                    키워드 : <input type="text" value="${addr } 맛집" id="keyword" size="15"> 
-					                    <button type="submit">검색하기</button> 
-					                </form>
-					            </div>
-					        </div>
-					        <hr>
-					        <ul id="placesList"></ul>
-					        <div id="pagination"></div>
-					    </div>
-					</div>
-					
-					<script src="/vue/map.js"></script>
+                   <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+               
+                   <div id="menu_wrap" class="bg_white">
+                       <div class="option">
+                           <div>
+                               <form onsubmit="searchPlaces(); return false;">
+                                   키워드 : <input type="text" value="${addr } 맛집" id="keyword" size="15"> 
+                                   <button type="submit">검색하기</button> 
+                               </form>
+                           </div>
+                       </div>
+                       <hr>
+                       <ul id="placesList"></ul>
+                       <div id="pagination"></div>
+                   </div>
+               </div>
+               <script type="text/javascript"
+                           src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72fa81817487692b6dc093004af97650&libraries=services"></script>
+               <script src="/vue/map.js"></script>
+               
                   </td>
                  </tr>
                </tbody>
@@ -167,72 +165,72 @@ const CNO='${param.contentid}'
                                                 <div class="comment-form" style="padding-top:5px" 
                                                  v-if="store.upReplyNo===rvo.no"
                                                 >
-			                                   
-			                                      <form action="#" method="post" >
-			           
-			                                            <textarea v-model="store.updateMsg[rvo.no]" cols="50" rows="5" placeholder="Message" style="float: left;display: inline-block;"></textarea>
-			                                            <button type="button" class="btn-primary" style="float: left;width: 80px;height: 100px;display: inline-block;" 
-			                                             @click="store.replyUpdate(rvo.no)"
-			                                            >댓글수정</button>
-			                                     
-			                                      </form>
-			                                     
-			                                    </div>
-			                                    <div class="comment-form" style="padding-top:5px" 
-				                                                 v-if="store.reReplyNo===rvo.no"
-				                                 >
-							                                   
-							                        <form action="#" method="post" >
-							           
-							                        <textarea v-model="store.replyMsg[rvo.no]" cols="50" rows="5" placeholder="Message" style="float: left;display: inline-block;"></textarea>
-							                        <button type="button" class="btn-primary" style="float: left;width: 80px;height: 100px;display: inline-block;" 
-							                             @click="store.replyReply(rvo.no)"
-							                         >댓글</button>
-							                                     
-							                         </form>
-							                                     
-							                        </div>
-			                                    
-			                                        
+                                            
+                                               <form action="#" method="post" >
+                    
+                                                     <textarea v-model="store.updateMsg[rvo.no]" cols="50" rows="5" placeholder="Message" style="float: left;display: inline-block;"></textarea>
+                                                     <button type="button" class="btn-primary" style="float: left;width: 80px;height: 100px;display: inline-block;" 
+                                                      @click="store.replyUpdate(rvo.no)"
+                                                     >댓글수정</button>
+                                              
+                                               </form>
+                                              
+                                             </div>
+                                             <div class="comment-form" style="padding-top:5px" 
+                                                             v-if="store.reReplyNo===rvo.no"
+                                             >
+                                                        
+                                             <form action="#" method="post" >
+                                
+                                             <textarea v-model="store.replyMsg[rvo.no]" cols="50" rows="5" placeholder="Message" style="float: left;display: inline-block;"></textarea>
+                                             <button type="button" class="btn-primary" style="float: left;width: 80px;height: 100px;display: inline-block;" 
+                                                  @click="store.replyReply(rvo.no)"
+                                              >댓글</button>
+                                                          
+                                              </form>
+                                                          
+                                             </div>
+                                             
+                                                 
                                                </div>
                                             </div>
                                             <ol class="children" v-if="rvo.group_tab===1">
-		                                            <li class="single_comment_area">
-		                                                <div class="comment-wrapper d-flex">
-		                                                    <!-- Comment Meta -->
-		                                                    <div class="comment-author">
-		                                                        <img src="/img/man.png" v-if="rvo.sex==='남자'">
-		                                                        <img src="/img/woman.png" v-else>
-		                                                    </div>
-		                                                    <!-- Comment Content -->
-		                                                    <div class="comment-content">
-		                                                        <span class="comment-date text-muted">{{rvo.dbday}}</span>
-		                                                        <h5>{{rvo.name}}</h5>
-		                                                        <p>{{rvo.msg}}</p>
-		                                                        <a class="a-btn" v-if="store.sessionId===rvo.id"
+                                                  <li class="single_comment_area">
+                                                      <div class="comment-wrapper d-flex">
+                                                          <!-- Comment Meta -->
+                                                          <div class="comment-author">
+                                                              <img src="/img/man.png" v-if="rvo.sex==='남자'">
+                                                              <img src="/img/woman.png" v-else>
+                                                          </div>
+                                                          <!-- Comment Content -->
+                                                          <div class="comment-content">
+                                                              <span class="comment-date text-muted">{{rvo.dbday}}</span>
+                                                              <h5>{{rvo.name}}</h5>
+                                                              <p>{{rvo.msg}}</p>
+                                                              <a class="a-btn" v-if="store.sessionId===rvo.id"
                                                                  @click="store.toggleUpdate(rvo.no,rvo.msg)"
                                                                 >{{store.upReplyNo===rvo.no?'취소':'수정'}}</a>
-		                                                        <a class="active" v-if="store.sessionId===rvo.id" class="a-link" @click="store.commonsDelete(rvo.no)">삭제</a>
-		                                                        <div class="comment-form" style="padding-top:5px" 
-				                                                 v-if="store.upReplyNo===rvo.no"
-				                                                >
-							                                   
-							                                      <form action="#" method="post" >
-							           
-							                                            <textarea v-model="store.updateMsg[rvo.no]" cols="50" rows="5" placeholder="Message" style="float: left;display: inline-block;"></textarea>
-							                                            <button type="button" class="btn-primary" style="float: left;width: 80px;height: 100px;display: inline-block;" 
-							                                             @click="store.replyUpdate(rvo.no)"
-							                                            >댓글수정</button>
-							                                     
-							                                      </form>
-							                                     
-							                                    </div>
-							                                    
-		                                                    </div>
-		                                                </div>
-		                                            </li>
-		                                        </ol>            
-			                                                       
+                                                              <a class="active" v-if="store.sessionId===rvo.id" class="a-link" @click="store.commonsDelete(rvo.no)">삭제</a>
+                                                              <div class="comment-form" style="padding-top:5px" 
+                                                             v-if="store.upReplyNo===rvo.no"
+                                                            >
+                                                        
+                                                           <form action="#" method="post" >
+                                
+                                                                 <textarea v-model="store.updateMsg[rvo.no]" cols="50" rows="5" placeholder="Message" style="float: left;display: inline-block;"></textarea>
+                                                                 <button type="button" class="btn-primary" style="float: left;width: 80px;height: 100px;display: inline-block;" 
+                                                                  @click="store.replyUpdate(rvo.no)"
+                                                                 >댓글수정</button>
+                                                          
+                                                           </form>
+                                                          
+                                                         </div>
+                                                         
+                                                          </div>
+                                                      </div>
+                                                  </li>
+                                              </ol>            
+                                                                
                                     </li>
                                      
                                 </ol>
@@ -292,20 +290,20 @@ const CNO='${param.contentid}'
                         const {onMounted,ref,createApp} = Vue
                         const {createPinia} = Pinia
                         const commonApp=createApp({
-                        	setup(){
-                        		const store=useCommonsRepleStore();
-                        		const msgRef=ref(null)
-                        		
-                        		onMounted(()=>{
-                        			store.sessionId=SESSION_ID
-                        			store.commonsListData(CNO)
-                        		})
-                        		
-                        		return {
-                        			store,
-                        			msgRef
-                        		}
-                        	}
+                           setup(){
+                              const store=useCommonsRepleStore();
+                              const msgRef=ref(null)
+                              
+                              onMounted(()=>{
+                                 store.sessionId=SESSION_ID
+                                 store.commonsListData(CNO)
+                              })
+                              
+                              return {
+                                 store,
+                                 msgRef
+                              }
+                           }
                         })
                         commonApp.use(createPinia())
                         commonApp.mount("#comment")

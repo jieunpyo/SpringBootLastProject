@@ -31,17 +31,15 @@
             </div>
         </div>
     </div>
-    <!-- ****** Breadcumb Area End ****** -->
-
-    <!-- ****** Archive Area Start ****** -->
     <section class="archive-area section_padding_80">
       <div class="container">
        <div class="col-sm-3">
         <jsp:include page="../admin/admin_menu.jsp"></jsp:include>
        </div>
        <div class="col-sm-9">
-         <jsp:include page="${admin_jsp }"></jsp:include>
+        <jsp:include page="${admin_jsp }"></jsp:include>
        </div>
       </div>
+    </section>
 </body>
 </html>
