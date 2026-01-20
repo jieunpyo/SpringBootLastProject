@@ -1,10 +1,24 @@
+# Build 
+FROM eclipse-temurin:17-jdk-alpine AS build
+WORKDIR /app 
+
+# copy 
+COPY gradlew .
+COPY gradle gradle 
+COPY gradlew build.gradle settings.gradle ./
+RUN chmod +x ./gradlew && ./gradlew dependencies --no-daemon
+
+# 소스 
+COPY src src
+RUN ./gradlew build -x test --no-daemon
 #jdk 17기반의 이미지 사용
-FROM eclipse-temurin:17-jdk-alpine
+# 뒤에 AS runtime => 작은량의 레이어 => runtime 이미지는 초경량 + 단일 레이어
+FROM eclipse-temurin:17-jdk-alpine  
 # 작업 디렉토리 설정 
 WORKDIR /app
 # 빌드된 jar 파일 복사 
-COPY build/libs/*-0.0.1-SNAPSHOT.war app.war
+COPY --from=build /app/build/libs/*-0.0.1-SNAPSHOT.war app.war
 # PORT 열기 
 EXPOSE 8080
-# 실행
+# 실행 
 ENTRYPOINT ["java","-jar","app.war"]
