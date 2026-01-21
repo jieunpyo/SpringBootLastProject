@@ -14,7 +14,7 @@ import lombok.Data;
  */
 @Data
 public class ReserveVO {
-  private int no,cno,isReserve;
+  private int no,cno,isReserve,iscancel;
   private String id,rday,rtime,rinwon,dbday;
   private Date regdate;
   private SeoulVO svo=new SeoulVO();

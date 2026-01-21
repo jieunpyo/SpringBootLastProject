@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+const ID='${sessionScope.userid}'
+</script>
 </head>
 <body>
   <table class="table">
@@ -36,15 +42,71 @@
          <td class="text-center">{{vo.rinwon}}</td>
          <td class="text-center">{{vo.dbday}}</td>
          <td class="text-center">
-           <button class="btn-xs btn-info">
-            {{vo.isReserve===0?'예약대기':'예약완료'}}
-           </button>
-           <button class="btn-xs btn-warning" style="margin-left: 2px">취소</button>
+           <button class="btn-xs btn-info" v-if="vo.isReserve===0">예약대기</button>
+           <button class="btn-xs btn-success" v-else
+            @click="store.reserveDetail(vo.no)"
+           >예약완료</button>
+           <button class="btn-xs btn-warning" style="margin-left: 2px"
+            @click="store.reserveRequest(vo.no)" v-if="vo.iscancel===0"
+           >취소요청</button>
+           <span class="btn-xs btn-default" style="margin-left: 2px"
+            v-else>취소대기</span>
          </th>
        </tr>
      </thead>
    </table>
-  
+         <div v-if="store.isShow">
+          <table class="table">
+               <tbody>
+                 <tr>
+                  <th colspan="8"><h3>예약정보</h3></th>
+                 </tr>
+                 <tr>
+                   <th class="text-center">예약번호</th>
+                   <td class="text-center">{{store.reserve_detail.no}}</td>
+                   <th class="text-center">예약일</th>
+                   <td class="text-center">{{store.reserve_detail.rday}}</td>
+                   <th class="text-center">예약시간</th>
+                   <td class="text-center">{{store.reserve_detail.rtime}}</td>
+                   <th class="text-center">예약인원</th>
+                   <td class="text-center">{{store.reserve_detail.rinwon}}</td>
+                 </tr>
+                 </tbody>
+              </table>
+              <table class="table">
+                <tbody>
+                 <tr>
+                  <th><h3>맛집정보</h3></th>
+                 </tr>
+                 <tr>
+                  <td width=30% class="text-center" rowspan="8">
+                    <img :src="store.reserve_detail.svo.image1" style="width: 100%;height: 120px">
+                  </td>
+                  <td colspan="2"><h3>{{store.reserve_detail.svo.title}}</h3></td>
+                 </tr>
+                 <tr>
+                  <td width="15%" class="text-center">주소</td>
+                  <td width="55%">{{store.reserve_detail.svo.address }}</td>
+                 </tr>
+                 <tr>
+                   <td colspan="2" class="text-right">
+                     <button class="btn-sm btn-warning"
+                      @click="store.isShow=false"
+                     >닫기</button>
+                   </td>
+                 </tr>
+               </tbody>
+              </table>
+             </div>
+             <div class="toast-container position-fixed bottom-0 end-0 p-3">
+               <div id="reserveToast" class="toast">
+                 <div class="toast-header bg-success text-white">
+                   <strong class="me-auto">예약 알림</strong>
+                   <button type=button class="btn-close" data-bs-dismiss="toast"></button>
+                 </div>
+                 <div class="toast-body" id="toastMsg"></div>
+               </div>
+             </div>
   </div>
   <script src="/vue/axios.js"></script>
   <script src="/vue/reserve/mypageStore.js"></script>
@@ -57,6 +119,7 @@
     		const store=useMypageStore()
     		onMounted(()=>{
     			store.dataRecv()
+    			store.connect(ID)
     		})
     		
     		return {

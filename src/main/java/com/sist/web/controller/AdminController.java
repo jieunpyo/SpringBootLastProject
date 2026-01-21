@@ -21,4 +21,5 @@ public class AdminController {
 	   model.addAttribute("main_jsp", "../admin/admin_main.jsp");
 	   return "main/main";
    }
+   
 }
