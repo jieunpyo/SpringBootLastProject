@@ -260,7 +260,7 @@
                             <div class="widget-title text-center">
                                 <h6>실시간 인기 검색어</h6>
                             </div>
-                            <c:forEach var="rvo" items="${rList }">
+                            <c:forEach var="rvo" items="${rList }" varStatus="s">
                              <p>${s.index+1}.${rvo.word}</p>
                             </c:forEach>
                             
@@ -269,7 +269,7 @@
                                     <input type="email" name="newsletter-email" id="email" placeholder="Your email">
                                     <button type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                                 </form>
-                            </div> --%>
+                            </div>--%>
                         </div>
                     </div>
                 </div>
