@@ -2,6 +2,7 @@ package com.sist.web.restcontroller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 // 추상화 => ChatModel => GPT / GEN / En / Oll 
 public class CommonsReplyRestController {
    private final CommonsReplyService cService;
+   private final SimpMessagingTemplate template;
    // 공통 모듈 => 반복 제거 
    public Map commonsData(int page,int cno)
    {
@@ -140,7 +142,14 @@ public class CommonsReplyRestController {
 		   vo.setId(id);
 		   vo.setName(name);
 		   vo.setSex(sex);
-		   cService.commonsReplyReplyInsert(vo);
+		   String pid=cService.commonsReplyReplyInsert(vo);
+		   if(!pid.equals(id))
+		   {
+			   template.convertAndSend(
+					"/sub/notice/"+pid,
+					"[🎉댓글 알림] 답글이 달렸습니다!!"
+				  );
+		   }
 		   map=commonsData(vo.getPage(), vo.getCno());
 	   }catch(Exception ex)
 	   {

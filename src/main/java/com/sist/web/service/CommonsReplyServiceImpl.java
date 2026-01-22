@@ -86,7 +86,7 @@ public class CommonsReplyServiceImpl implements CommonsReplyService{
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public void commonsReplyReplyInsert(CommonsReplyVO vo) {
+	public String commonsReplyReplyInsert(CommonsReplyVO vo) {
 		// TODO Auto-generated method stub
 		int pno=vo.getNo();
 		CommonsReplyVO pvo=mapper.commonsReplyParentData(pno);
@@ -98,6 +98,8 @@ public class CommonsReplyServiceImpl implements CommonsReplyService{
 		
 		mapper.commonsReplyReplyInsert(vo);
 		mapper.commonsDepthIncrement(pno);
+		
+		return pvo.getId();
 	}
 
 	
